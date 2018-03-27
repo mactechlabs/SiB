@@ -1,0 +1,91 @@
+#academic_report{
+	background-image:url(./images/watermark.jpg);
+	background-position:1050px 10px;
+	background-color:white;
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	float:center;
+	width:60.9%;
+	height:900px;
+    margin-left:20px;
+    margin-right:2px;
+	overflow:auto;
+	background-color:white;
+	padding:0% 0%;
+	border:1px solid;
+}
+#report_wrapper{
+border:2px solid grey;
+border-radius:8px;
+width:800px;
+height:1100px;
+margin-top:10px;
+margin-left:10px;
+
+
+}
+#marks_wrapper{
+width:750px;
+height:600px;
+margin-left:23px;
+margin-top:10px;
+	background-image:url(./images/watermark.jpg);
+	background-position:100px 20px;
+	background-color:white;
+	background-repeat:no-repeat;
+	background-attachment:scroll;
+	font-size:14px;
+}
+.marks_table{
+width:750px;
+height:500px;
+
+}
+
+table
+{
+border-collapse:collapse;
+border-radius:10px;
+font-weight:bold;
+}
+table,td
+{
+border: 1px solid grey;
+
+}
+#no_border{
+border:0px;
+padding:10px;
+text-align:center;
+font-size:13px;
+font-weight:bold;
+}
+#border_yes{
+	border:0x;
+	padding:10px;
+}
+
+hr{
+	width:700px;
+	color:black;
+
+}
+#contact{
+	margin:0px 0px 0px 150px;
+	font-weight:bold;
+
+}
+#comments{
+border:0px;
+padding:0px;
+text-align:left;
+font-size:13px;
+font-weight:blue;
+	
+}
+#grading{
+	margin-left:200px;
+	margin-top:50px;
+}
+
+
