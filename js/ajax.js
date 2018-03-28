@@ -44,9 +44,17 @@ $(document).ready(function() {
 			data:{id:id},
 			dataType:"json",
 		}).success(function(data){
+			console.log(data);
+			var size = data.length;
+			var count = 0;
+			while (count < size){
+				var thisrow = "<tr><td class='subje'>"+data[count].subject_name+"</td><td class='markR' style='width:27px;'>"+data[count].final_score+"</td><td class='gradeR' style='width:27px;'></td> <td class='commentR' ></td></tr>";
+				$('.individualbd').append(thisrow);
+				count++;
+				console.log(count);
+			}
 			$('.nameR').html(data.class);
 			$('.subj').html(data.subject_name);
-			$('.markR').html(data.final_score);
 		});
 	});
 
@@ -76,4 +84,6 @@ $(document).ready(function() {
 		// popover demo
 		$("[data-toggle=popover]")
 			.popover()
+
+			
 });

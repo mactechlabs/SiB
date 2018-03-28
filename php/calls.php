@@ -72,7 +72,7 @@ switch($signing){
     // echo $year;
     // echo $exam;
      $biodata_student_no = $_REQUEST['id'];
-     getStudentsResults($class,$term,$year,$exam,$biodata_student_no);
+    getStudentsResults($class,$term,$year,$exam,$biodata_student_no);
      break;
     } 
 }

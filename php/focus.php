@@ -65,10 +65,11 @@ function getStudentsResults($class,$term,$year,$exam,$biodata_student_no){
   $query = "SELECT * FROM  exam_result WHERE biodata_student_no = '".$biodata_student_no."'";
   include "core.inc.php";
   $query_run = mysqli_query($con, $query);
-  while ($row =mysqli_fetch_assoc($query_run)){
-    echo json_encode($row);
-  }
-
+  $thisarray = array();
+  while($row =mysqli_fetch_array($query_run)){
+    array_push($thisarray,$row);
+  };
+  echo json_encode($thisarray);
 }
 function test_grade($mark){
     $queryGrade = "SELECT * FROM  grade WHERE id = 2";
@@ -92,34 +93,34 @@ function test_grade($mark){
     //testing the conditions and awarding grades
     switch ($mark){
     case $mark>$row['d1from']:
-    return  $grade1;
+    echo  $grade1;
     break;
     case $mark>=$row['d2from']:
-    return  $grade2;
+    echo  $grade2;
     break;
     case $mark>=$row['c3from']:
-    return  $grade3;
+    echo  $grade3;
     break;
     case $mark>=$row['c4from']:
-    return  $grade4;
+    echo  $grade4;
     break;
     case $mark>=$row['c5from']:
-    return  $grade5;
+    echo  $grade5;
     break;
     case $mark>=$row['c6from']:
-    return  $grade6;
+    echo  $grade6;
     break;
     case $mark>=$row['p7from']:
-    return  $grade7;
+    echo  $grade7;
     break;
     case $mark>=$row['p8from']:
-    return  $grade8;
+    echo  $grade8;
     break;
     case $mark<=$row['F9to']:
-    return  $grade9;
+    echo  $grade9;
     break;
     case $mark = "":
-    return  $none;
+    echo  $none;
     break;
     }
     }

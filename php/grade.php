@@ -3,10 +3,14 @@
   $query = "SELECT * FROM  exam_result WHERE biodata_student_no = 2183869";
   include "core.inc.php";
   $query_run = mysqli_query($con, $query);
-
-  while ($row =mysqli_fetch_assoc($query_run)){
-    echo json_encode($row);
-  }
+  $thisarray = array();
+  while($row =mysqli_fetch_array($query_run)){
+    array_push($thisarray,$row);
+  };
+  $num = mysqli_num_rows($query_run);
+  array_push($thisarray,$num);
+  echo json_encode($thisarray);
+  
  
 
 /*

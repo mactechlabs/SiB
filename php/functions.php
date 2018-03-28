@@ -1388,12 +1388,15 @@ function InEntry() {
             switch($considerPapers){
                 case "yes": 
                 $finalMark =  round(($p1 + $p2 + $p3 + $p4)/$noPapers);
+                $gradeT = test_grade($finalScore);
                 break;
                 case "no": 
                 $finalMark = $finalScore;
+                $gradeT = test_grade($finalScore);
                 break;
             }
-          $ins = "INSERT INTO `exam_result` (`exam_result_no`, `examCode`, `subject_name`, `P1`, `P2`, `P3`, `P4`, `P5`, `P6`, `final_score`, `entrydate`, `biodata_student_no`, `term`, `year`, `class`, `termPart`, `enteredBy`) VALUES (NULL,'" . $sub_code . "', '" . $sub_name . "', '" . $p1 . "', '" .  $p2. "', '" . $p3 . "', '" .  $p4 . "', NULL, NULL,'".$finalMark."',NULL, '".$hiddenName."', '".$term."', '".$year."', '".$class."', '".$type."', NULL) ";
+           
+          $ins = "INSERT INTO `exam_result` (`exam_result_no`, `examCode`, `subject_name`, `P1`, `P2`, `P3`, `P4`, `P5`, `P6`, `final_score`,`grade`, `entrydate`, `biodata_student_no`, `term`, `year`, `class`, `termPart`, `enteredBy`) VALUES (NULL,'" . $sub_code . "', '" . $sub_name . "', '" . $p1 . "', '" .  $p2. "', '" . $p3 . "', '" .  $p4 . "', NULL, NULL,'".$finalMark."','".$gradeT."',NULL, '".$hiddenName."', '".$term."', '".$year."', '".$class."', '".$type."', NULL) ";
             $run = mysqli_query($con, $ins);
             if (!$run){
                 echo "No".mysqli_error($con);
@@ -3321,15 +3324,9 @@ function IndividualMarksheet() {
         <th>Grade</th>
         <th>Comment</th>
         </thead>
-        <tbody>
+        <tbody class="individualbd">
       
-        <tr>
-        <td class="subje"></td>
-        <td class="markR" style="width:27px;"></td>
-        <td class="gradeR" style="width:27px;"></td>
-        <td class="commentR" style=""></td>
 
-        </tr>
         </tbody>
         </table>
         </div>
