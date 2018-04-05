@@ -27,6 +27,17 @@ body {
     }
 }
 
+.bulk-form-control-input{
+    font-size: 12px;
+    padding: 0px;
+    text-align: center;
+}
+
+.panel-footer{
+    padding: 4px;
+    display: flow-root;
+}
+
 .navbar-top-links {
     margin-right: 0;
 }

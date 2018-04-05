@@ -3,6 +3,7 @@ $(document).ready(function() {
 	$('.term').attr('disabled',true);
     $('.name').attr('disabled',true);
 	$('.year').attr('disabled',true);
+	$('.bulk-form-control-input').attr('disabled',true);
 	$('.student').attr('disabled',true);
 	$('.enterFinalM').attr('visibility',false);
 	$('.subinput').attr('disabled',true);
@@ -14,6 +15,7 @@ $(document).ready(function() {
 				$('.year').attr('disabled',false);
 					$('.year').change(function() {
 						$('.exam').attr('disabled',false);
+						$('.bulk-form-control-input').attr('disabled',false);
 							$('.exam').change(function() {
 								$('.student').attr('disabled',false);
 									$('.student').change(function() {
@@ -85,5 +87,10 @@ $(document).ready(function() {
 		$("[data-toggle=popover]")
 			.popover()
 
-			
+	/* Handle submission of bulk examination entry */
+	$("#bulkEntryForm").on('submit',function(event){
+		event.preventDefault();
+		var data = $(this).serializeArray();
+		console.log("form data:", data);
+	});		
 });

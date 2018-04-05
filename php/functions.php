@@ -1438,7 +1438,7 @@ function MarksEntryStudent() {
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="col-lg-3">
-                            <form method ="post" role = "form">
+                            <form method ="post" id="bulkEntryForm" role = "form">
                                 <label >Class</label>
                                 <select class="form-control class" name= "class">
                                     <option value="">--Select--</option>
@@ -1473,16 +1473,16 @@ function MarksEntryStudent() {
                             <label for="female">Type</label>
                             <select class='form-control exam' required='required' name='exam_type'>
                                 <option value = "">--Select--</option>
-    <?php
-    include "core.inc.php";
-    $sql = mysqli_query($con, "SELECT * FROM exam_types");
-    if ($sql) {
-        echo "Yes";
-    } else {
-        echo "Error" . mysqli_error($con);
-    }
-    while ($row = mysqli_fetch_array($sql)) {
-        ?>
+                                    <?php
+                                    include "core.inc.php";
+                                    $sql = mysqli_query($con, "SELECT * FROM exam_types");
+                                    if ($sql) {
+                                        echo "Yes";
+                                    } else {
+                                        echo "Error" . mysqli_error($con);
+                                    }
+                                    while ($row = mysqli_fetch_array($sql)) {
+                                        ?>
                                     <option id ="<?php echo $row['id']; ?>"><?php echo $row['exam_name']; ?></option>
                                     <?php
                                 }
@@ -1496,25 +1496,8 @@ function MarksEntryStudent() {
                             <div class="panel panel-primary" style="margin-top:6px;">
                                 <div class="panel-heading">
                                     Enter Marks <b class="stdName"></b>
-                                    <label class="pull-right">Student:</label>
-
-                                    <select class='pull-right student' required='required' style = "color:black"  name = "stdname">
-                                        <option value = "">--Select--</option>
-    <?php
-    $sql_sub = mysqli_query($con, "SELECT * FROM subjects WHERE sname != '' ");
-    while ($row = mysqli_fetch_array($sql_sub)) {
-        $sname = strtoupper($row['sname']);
-        ?>
-                                            <option id ="<?php echo $row['id']; ?>"><?php echo $sname . " " . $row['fname'] ?></option>
-                                            <?php
-                                        }
-                                        ?>                                                   
-                                    </select>
-
                                 </div>
                                 <div class="panel-body">
-
-
                                     <div class="form-group">
                                         <div class="col-lg-10">
                                             <table border="0" width="110%" class="table-striped">
@@ -1523,6 +1506,8 @@ function MarksEntryStudent() {
                                                 <td>Subject</td>
                                                 <?php
                                                     $sql = mysqli_query($con, "SELECT * FROM subjects");
+                                                    $headings = array();
+                                                    $size = mysqli_num_rows($sql);
                                                     while ($row = mysqli_fetch_array($sql)) {
                                                         $short = strtoupper($row['short']);
                                                         ?>
@@ -1535,26 +1520,24 @@ function MarksEntryStudent() {
                                                 <tbody>
                                                 <?php
                                                 $sql = mysqli_query($con, "SELECT * FROM biodata WHERE sname != '' ");
-                                                $i = 0;
                                                 $num = mysqli_num_rows($sql);
                                                 while ($row = mysqli_fetch_array($sql)) {
                                                     $sname = strtoupper($row['sname']);
                                                     $fname = ucfirst($row['fname']);
+                                                    $student_no = ucfirst($row['student_no']);
                                                     echo "<tr><td>$sname  $fname</td>";
-                                                    echo "<td><input type = 'text' class='form-control' style='width:42px;'></td>";
-                                                    echo "</tr>";
-                                                
-                                                                    
+                                                    $i = 0;
+                                                    while ($i < $size){
+                                                        $name = $student_no."-".$headings[$i];
+                                                        echo "<td><input type='number' max='100' min='0' name='".$name."' value='100' class='form-control bulk-form-control-input' style='width:42px;'></td>";
+                                                        $i++;
+                                                    }
+                                                    echo "</tr>";                
                                                 }
-
-     
-
-
-
-    if (isset($_POST['insertMarks'])) {
-      
-    }
-    ?>
+                                                    if (isset($_POST['insertMarks'])) {
+                                                    
+                                                    }
+                                                    ?>
 
                                                 </tbody>
                                             </table>
@@ -1563,7 +1546,7 @@ function MarksEntryStudent() {
 
                                     </div>                        </div>
                                 <div class="panel-footer">
-                                    <button class="btn btn-primary pull-right " name="insertMarks"> Submit Marks</button>
+                                    <button class="btn btn-primary pull-right " id="bulkEntrySubmit" name="insertMarks"> Submit Marks</button>
                                 </div>
                                 </form>
                             </div>
